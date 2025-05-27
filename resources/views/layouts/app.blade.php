@@ -1,0 +1,19 @@
+
+   @props(['title' => '', 'bodyClass' => null])
+   
+   
+   <x-base-layout :$title :$bodyClass>
+        <x-layouts.header />
+
+        @session('success')
+          <div class='container my-large'>
+               <div class="success-message">
+                    {{ session('success') }}
+               </div>
+          </div>
+        @endsession
+        {{ $slot }}
+   </x-base-layout>
+
+    
+   

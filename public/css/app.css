@@ -1,0 +1,1165 @@
+:root {
+  --primary-font: "Ubuntu", sans-serif;
+  --primary-color: #2109a8;
+  --primary-color-hover: #2109a8;
+  --text-color: #5c5c5c;
+  --link-color: var(--primary-color);
+  --body-bg: #eeeeee;
+  --line-height-base: 18px;
+  --navbar-bg: #fff;
+  --navbar-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  --navbar-height: 80px;
+
+  /* Botones */
+  --primary-button-color: #fff;
+  --primary-button-border-color: #2109a8;
+  --button-border-radius: 6px;
+  --default-button-color: var(--text-color);
+  --default-button-bg: #f2f2f2;
+  --default-button-border-color: #d6d6d6;
+  --default-button-hover-bg: #ebebeb;
+
+  /* Inputs */
+  --input-bg-color: #f2f2f2;
+  --input-text-color: #272727;
+  --input-border: 1px solid #d6d6d6;
+  --input-hover-border-color: #2109a8;
+  --input-focus-border-color: var(--primary-color);
+  --input-border-error-color: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  color: var(--text-color);
+}
+
+hr {
+  border: 1px solid rgb(234, 234, 234);
+}
+
+.img-responsive {
+  max-width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.items-start {
+  align-items: start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.w-full {
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.p-small {
+  padding: 0.5rem !important;
+}
+
+.p-medium {
+  padding: 1rem;
+}
+
+.p-large {
+  padding: 1.5rem !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-small {
+  margin: 0.5rem;
+}
+
+.m-medium {
+  margin: 1rem;
+}
+
+.m-large {
+  margin: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-medium {
+  margin-bottom: 1rem;
+}
+
+.mb-large{
+  margin-bottom: 1.5rem;
+}
+
+.my-large {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.my-medium {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+a {
+  color: var(--link-color);
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  color: var(--input-text-color);
+  background-color: var(--input-bg-color);
+  border: var(--input-border);
+  width: 100%;
+  transition: all 0.3s;
+  outline: none;
+  min-height: 40px;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--body-bg);
+  font-size: 14px;
+  font-family: var(--primary-font);
+  transition: all 0.3s;
+}
+
+
+
+.navbar {
+  position: relative;
+  z-index: 15;
+  height: var(--navbar-height);
+  padding: 0rem 2rem;
+  background-color: var(--navbar-bg);
+  box-shadow: var(--navbar-box-shadow);
+}
+
+.navbar-content {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.logo-wrapper {
+  padding: 1.25rem;
+  padding-left: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.navbar-auth .btn {
+  border-radius: 50px;
+}
+
+
+.navbar-menu {
+  position: relative;
+}
+
+.navbar-menu  .navbar-menu-handler {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: var(--primary-color);
+  transition: all 0.3s;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.navbar-menu .navbar-menu-handler:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-menu:hover .submenu{
+  display: block;
+}
+
+.navbar-menu .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: -2px;
+  right: 0;
+  width: 200px;
+  background-color: #FFF;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 1rem 0;
+  list-style: none;
+}
+
+.navbar-menu .submenu > li > a,
+.navbar-menu .submenu > li button {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  font-size: 14px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.navbar-menu .submenu > li > a:hover,
+.navbar-menu .submenu > li button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+.btn-navbar-toggle {
+  display: none;
+  transition: all 0.3s;
+}
+
+main {
+  padding: 1rem;
+}
+
+.btn-link {
+  border: none;
+  background-color: transparent;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: var(--button-border-radius);
+}
+
+.btn-primary {
+  color: var(--primary-button-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-button-border-color);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn-primary:disabled {
+  background-color: var(--primary-color);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn-primary:disabled:hover,
+.btn-primary:disabled:focus {
+  background-color: var(--primary-color);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-color-hover);
+}
+
+.btn-add-new-moto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn-add-new-moto:hover,
+.btn-add-new-moto:focus {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.btn-signup,
+.btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-login:hover {
+  border-color: var(--primary-button-border-color);
+}
+
+.hero-slides {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.hero-slide {
+  height: 600px;
+  flex: 0 0 100%;
+  transition: transform 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.hero-slide .container {
+  display: flex;
+}
+
+.hero-slide-prev,
+.hero-slide-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 48px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  height: 52px;
+  width: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.hero-slide-prev:hover,
+.hero-slide-next:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero-slide-prev {
+  left: 0;
+}
+
+.hero-slide-next {
+  right: 0;
+}
+
+.slide-content,
+.slide-image {
+  flex: 1;
+}
+
+.hero-slider {
+  background-color: #fff;
+}
+
+.hero-slider-title {
+  font-size: 54px;
+}
+
+.hero-slider-title strong {
+  color: var(--primary-color);
+}
+
+.hero-slider-content {
+  font-size: 24px;
+  line-height: 2.5rem;
+}
+
+.btn-hero-slider {
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 1rem 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.btn-hero-slider:hover {
+  color: #fff;
+  background-color: var(--primary-color-hover);
+  padding: 1rem 2.5rem;
+}
+
+.find-a-moto-inputs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.find-a-moto-inputs > div {
+  width: 20%;
+  padding: 0.25rem;
+}
+
+input:not([type="radio"]):not([type="checkbox"]):hover,
+textarea:hover,
+select:hover {
+  border-color: var(--input-hover-border-color);
+}
+
+
+.btn-find-a-moto-reset,
+.btn-find-a-moto-submit {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.25rem;
+  height: 40px;
+}
+
+
+/*css de las últimas motos publicadas*/
+
+.moto-items-listing {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  
+}
+
+.moto-item-title {
+  margin: 0.75rem 0;
+  font-size: 16px;
+}
+
+.moto-item-price {
+  font-weight: 500;
+}
+
+.moto-item-img {
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.moto-item-badge {
+  background-color: #e5e5e5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.btn-heart {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+
+.btn-heart:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*css de la página de login*/
+body.page-login,
+body.page-signup {
+  padding: 3rem 0;
+  background-color: white;
+}
+
+.page-login a {
+  text-decoration: none;
+}
+
+.page-login .btn-login {
+  border-radius: 50px;
+  font-size: 20px;
+}
+
+.page-login .social-auth-buttons {
+  margin-top: 1rem;
+}
+
+.page-login .social-auth-buttons .btn {
+  font-size: 16px;
+}
+
+.container-small {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.auth-page-form,
+.auth-page-image {
+  flex: 1;
+}
+
+.auth-page-title {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.auth-page-password-reset {
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.btn-default {
+  background-color: var(--default-button-bg);
+  border-color: var(--default-button-border-color);
+}
+
+.btn-default:hover {
+  background-color: var(--default-button-hover-bg);
+}
+
+
+.login-text-dont-have-account {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-page-image {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.logout{
+  margin-top:1rem;
+}
+
+
+
+
+
+
+
+.find-a-car-form {
+  flex-direction: column;
+}
+
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+  
+.search-moto-results-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-moto-sidebar {
+  width: 300px;
+}
+
+.card-found-moto {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+@media screen and (min-width: 680px) {
+  .sort-dropdown {
+    width: 200px;
+  }
+}
+
+.search-moto-sidebar .find-a-moto-form {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 680px) {
+  .sm\:flex {
+    display: flex;
+  }
+}
+
+.search-moto-results .moto-items-listing {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width:850px
+}
+
+
+
+
+.close-filters-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: none;
+}
+
+.close-filters-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.close-filters-button {
+  display: none;
+}
+
+.search-moto-sidebar .find-a-moto-inputs > div {
+  width: 100%;
+}
+
+.search-moto-sidebar .find-a-moto-inputs {
+  flex-direction: column;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-item {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  margin: 2px;
+  text-decoration: none;
+  color: #7b7b7b;
+}
+
+.pagination-item.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+
+
+.show-filters-button {
+  margin-right: 1rem;
+  display: none;
+  cursor: pointer;
+}
+
+
+/*css de la página de detalles de la moto*/
+
+.moto-details-page-title {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.moto-details-region {
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.moto-details-content {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+}
+
+.moto-images-and-description {
+  flex: 1;
+}
+
+.moto-images-carousel {
+  display: flex;
+  height: 520px;
+  position: relative;
+}
+
+.moto-image-wrapper {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.moto-active-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.moto-image-thumbnails {
+  width: 110px;
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.moto-image-thumbnails img {
+  width: 100%;
+  height: 80px;
+  border-radius: 4px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.moto-image-thumbnails .active-thumbnail {
+  outline: 2px solid rgb(54, 145, 197);
+}
+
+/* width */
+.moto-image-thumbnails::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.moto-image-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.moto-image-thumbnails::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  transition: all 0.3s;
+}
+
+.moto-image-thumbnails:hover::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+.moto-image-thumbnails::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+.carousel-button {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button.next-button {
+  left: auto;
+  right: 0;
+}
+
+.moto-detailed-description {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.moto-details-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.car-specifications {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.car-specifications > li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.car-specifications > li > svg {
+  width: 18px;
+}
+
+.moto-details {
+  padding: 1.5rem;
+  min-width: 300px;
+  width:250px;
+}
+
+.moto-details-price {
+  font-size: 28px;
+  margin: 0;
+  font-weight: bolder;
+}
+
+.moto-details-table {
+  width: 100%;
+}
+
+.moto-details-table th,
+.moto-details-table td {
+  padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.moto-details-table th {
+  text-align: left;
+  font-weight: 300;
+}
+
+.moto-details-owner {
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.moto-details-owner-image {
+  width: 44px;
+}
+
+.moto-details-phone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 14px;
+  border: 1px solid var(--primary-color);
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.moto-details-phone-view {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0.5rem;
+  display: inline-block;
+  width: 80px;
+  font-weight: normal;
+  color: var(--text-color);
+  transition: all 0.3s;
+}
+
+.moto-details-phone-view:hover {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/*css de la página de mis motos*/
+.page-my-moto .btn-edit,
+.page-my-moto .btn-delete {
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+}
+
+.page-my-moto .btn-edit:hover,
+.page-my-moto .btn-delete:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.page-my-moto .btn-edit {
+  color: #448eef;
+}
+
+.page-my-moto .btn-delete {
+  color: #f16060;
+}
+
+.success-message {
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  background-color: #03ac4f;
+  color: white;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table > thead > tr > th {
+  background-color: #f4f4f4;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.table > tbody > tr > td {
+  padding: 0.25rem 0.75rem;
+}
+
+.my-motos-img-thumbnail {
+  width: 60px;
+  border-radius: 6px;
+}
+
+/*css de la página de editar moto*/
+.add-new-moto-form .form-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.add-new-moto-form .form-details {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.col {
+  flex: 1;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.form-images {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 1px solid rgb(224, 224, 224);
+  align-items: center;
+  justify-content: start;
+}
+
+.form-group .checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.moto-form-image-preview {
+  position: relative;
+}
+
+.moto-form-image-preview .delete-icon {
+  position: absolute;
+  right: 0.125rem;
+  top: 0.125rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.moto-form-image-preview:hover .delete-icon {
+  opacity: 1;
+}
+
+.moto-form-image-preview .delete-icon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.moto-form-image-preview img {
+  width: 80px;
+  height: 80px;
+  max-width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.form-group .error-message {
+  display: none;
+}
+
+.form-group.has-error .error-message {
+  display: block;
+  margin-top: 4px;
+  font-size: 90%;
+  color: var(--input-border-error-color);
+  border-color: red;
+}
+.form-group .inline-radio {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+.text-error {
+  color: red;
+}
+
+.form-group.has-error input {
+  border: 1px solid red;
+}
+
+.is-invalid {
+  border: 1px solid red;
+  background-color: #ffecec;
+}
+
+/*css administrar imagenes moto*/
+.moto-images-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-update-images {
+  flex: 1
+}
+.form-image-upload {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.form-image-upload .upload-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  border: 1px dotted;
+}
+
+.form-image-upload input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.moto-form-images {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: start;
+}
