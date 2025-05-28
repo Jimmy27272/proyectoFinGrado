@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('auth.login'); //Vista para el login
     }
 
-    public function store(SignupRequest $request){
+    public function store(Request $request){
         $credentials = $request->validate([
             'email' => ['required','email'],
             'password' => ['required','string','min:8']

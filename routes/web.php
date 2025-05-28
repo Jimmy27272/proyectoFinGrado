@@ -24,7 +24,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Rutas públicas de motos
 Route::get('/moto/search', [MotoController::class, 'search'])->name('moto.search');
-Route::get('/moto/{moto}', [MotoController::class, 'show'])->name('moto.show'); // Solo show es pública
+Route::resource('moto', MotoController::class)->except(['show']);
+
+
 
 // Rutas protegidas por auth
 Route::middleware('auth')->group(function () {
@@ -34,11 +36,14 @@ Route::middleware('auth')->group(function () {
     // CRUD de motos (except}o show)
     Route::resource('moto', MotoController::class)->except(['show']);
 
+
     // Gestión de imágenes de motos
     Route::get('/moto/{moto}/images', [MotoController::class, 'motoImages'])->name('moto.images');
     Route::put('/moto/{moto}/images', [MotoController::class, 'updateImages'])->name('moto.updateImages');
     Route::post('/moto/{moto}/images', [MotoController::class, 'addImages'])->name('moto.addImages');
 });
+
+Route::get('/moto/{moto}', [MotoController::class, 'show'])->name('moto.show'); // Solo show es pública
 
 
 // Rutas de restablecimiento de contraseña
@@ -49,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPassword'])->name('password.reset');
 
     Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+
+ 
 
 /*<?php
 

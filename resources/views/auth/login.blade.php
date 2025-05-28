@@ -32,7 +32,7 @@
 
   <x-slot:footerLink>
     ¿No tienes una cuenta? -
-    <a href="/signup.html"> Click aquí para crear una</a>
+    <a href="{{route('signup')}}"> Click aquí para crear una</a>
   </x-slot:footerLink>
 </x-guest-layout>
 
