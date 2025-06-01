@@ -1,5 +1,8 @@
 
-@props(['bodyClass' => '', 'title' => ''])
+@props(['bodyClass' => '', 'title' => '']) 
+{{-- Este es el layout base de la aplicación. Incluye la estructura HTML, las meta etiquetas y los enlaces a hojas de estilo y scripts. --}}
+
+{{-- La propiedad bodyClass permite añadir clases personalizadas a la etiqueta body, y la propiedad title establece dinámicamente el título de la página. --}}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +30,7 @@
   </head>
   <body @if($bodyClass)class="{{$bodyClass}}"@endif>
 
-    {{ $slot }}
+    {{ $slot }}  <!-- Aquí se insertará el contenido de las vistas que extiendan este layout -->
 
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.js"

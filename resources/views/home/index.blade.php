@@ -39,7 +39,7 @@
                 Publica tu moto fácilmente en nuestra interfaz, descríbela, sube fotos y el comprador perfecto la encontrará.
               </p>
 
-              <button class="btn btn-hero-slider">Añade tu moto</button>
+              <a href="{{ route('moto.create') }}" class="btn btn-hero-slider">Añade tu moto</a>
             </div>
           </div>
           <div class="slide-image">

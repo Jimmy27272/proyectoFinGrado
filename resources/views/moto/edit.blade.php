@@ -149,7 +149,7 @@
               </div>
               <div class="form-images">
                 <p>
-                  Actualiza tus imágenes <a href="#">Desde aquí</a>
+                  Actualiza tus imágenes <a href="{{route('moto.updateImages', $moto)}}">Desde aquí</a>
                 </p>
                 <div class="moto-form-images">
                   @foreach($moto->images as $image)

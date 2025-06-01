@@ -22,7 +22,7 @@ class HomeController extends Controller
         $motos = Moto::where('published_at', '<', now())
             ->with(['primaryImage', 'ciudad', 'MotoTipo', 'cilindrada', 'fabricante', 'modelo', 'favouredUsers'])
             ->orderBy('published_at', 'desc')
-            ->limit(30)
+            ->limit(15)
             ->get();
         
 

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ciudades', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('comunidad_id')->constrained('comunidades');
-            $table->string('name', 45);
+            $table->id(); // ID de la ciudad
+            $table->foreignId('comunidad_id')->constrained('comunidades');// Relación con la tabla comunidades
+            $table->string('name', 45); // Nombre de la ciudad
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ciudades');
+        Schema::dropIfExists('ciudades'); // Eliminar la tabla ciudades
     }
 };

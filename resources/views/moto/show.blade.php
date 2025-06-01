@@ -56,7 +56,7 @@
   
               <div class="card moto-detailed-description">
                 <h2 class="moto-details-title">Descripción detallada</h2>
-                  {!!$moto->descripcion!!}
+                  {!!$moto->descripcion!!} 
               </div>
   
               <div class="card moto-detailed-description">
@@ -173,7 +173,7 @@
                   <div>{{$moto->owner->motos()->count()}} motos</div>
                 </div>
               </div>
-              <a href="tel:{{$moto->phone}}" class="moto-details-phone">
+              <div class="moto-details-phone">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -190,8 +190,8 @@
                 </svg>
   
                 {{$moto->phone}}
-                <span class="moto-details-phone-view">ver número</span>
-              </a>
+                <span class="moto-details-phone-view">Número Teléfono</span>
+              </div>
             </div>
           </div>
         </div>

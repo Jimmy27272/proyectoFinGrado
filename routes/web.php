@@ -14,17 +14,17 @@ use App\Http\Controllers\PasswordResetController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Registro
-Route::get('/signup', [SignupController::class, 'create'])->name('signup');
-Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
+Route::get('/signup', [SignupController::class, 'create'])->name('signup'); // Vista para el registro
+Route::post('/signup', [SignupController::class, 'store'])->name('signup.store'); //Procesa el registro cuando se envía el formulario
 
 // Login
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'create'])->name('login'); // Vista para el login
+Route::post('/login', [LoginController::class, 'store'])->name('login.store'); // Procesa el login cuando se envía el formulario
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Procesa el logout cuando se envía el formulario
 
 // Rutas públicas de motos
 Route::get('/moto/search', [MotoController::class, 'search'])->name('moto.search');
-Route::resource('moto', MotoController::class)->except(['show']);
+//Route::resource('moto', MotoController::class)->except(['show']);
 
 
 
@@ -53,7 +53,7 @@ Route::get('/moto/{moto}', [MotoController::class, 'show'])->name('moto.show'); 
 
     Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPassword'])->name('password.reset');
 
-    Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+    Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update'); // Procesa el restablecimiento de contraseña cuando se envía el formulario
 
  
 

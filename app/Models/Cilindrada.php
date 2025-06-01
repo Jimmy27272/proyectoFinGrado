@@ -12,12 +12,12 @@ class Cilindrada extends Model
 
     use hasFactory;
 
-    public $timestamps = false;
+    public $timestamps = false; // Indica que no se usan timestamps en esta tabla
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name']; // Atributos que se pueden asignar masivamente
 
-    public function motos(): HasMany
+    public function motos(): HasMany // Relación uno a muchos con la tabla motos
     {
-        return $this->hasMany(Moto::class);
+        return $this->hasMany(Moto::class); 
     }
 }

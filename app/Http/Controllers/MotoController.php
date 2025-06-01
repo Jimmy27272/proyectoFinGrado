@@ -80,9 +80,6 @@ class MotoController extends Controller
        return redirect()->route('moto.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request, Moto $moto)
     {
         if(!$moto->published_at){
@@ -279,7 +276,7 @@ class MotoController extends Controller
     }
 
 
-        public function addImages(Request $request, Moto $moto)
+public function addImages(Request $request, Moto $moto)
 {
     // Get images from request
     $images = $request->file('images') ?? [];
