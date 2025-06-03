@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MotoController;
 use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\MotoAdminController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -22,9 +24,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // P
 
 // Rutas públicas de motos
 Route::get('/moto/search', [MotoController::class, 'search'])->name('moto.search');
-//Route::resource('moto', MotoController::class)->except(['show']);
-
-
 
 // Rutas protegidas por auth
 Route::middleware('auth')->group(function () {
@@ -53,5 +52,8 @@ Route::get('/moto/{moto}', [MotoController::class, 'show'])->name('moto.show'); 
 
     Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update'); // Procesa el restablecimiento de contraseña cuando se envía el formulario
 
- 
-
+ // Rutas de administración
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::delete('/admin/{moto}', [MotoAdminController::class, 'destroy'])->name('admin.destroy');
+});

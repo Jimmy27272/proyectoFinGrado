@@ -23,6 +23,12 @@
 
           Añadir nueva moto
         </a>
+        @if(auth()->user()?->isAdmin())
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-outline ml-4">
+                Panel Admin
+            </a>
+        @endif
+
         
         <div class="navbar-menu" tabindex="-1">
           <a href="javascript:void(0)" class="navbar-menu-handler">
