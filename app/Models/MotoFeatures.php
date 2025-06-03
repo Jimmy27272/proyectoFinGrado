@@ -33,7 +33,7 @@ class MotoFeatures extends Model
     'usb'	
     ];
 
-    public function moto(): BelongsTo
+    public function moto(): BelongsTo // Relación de pertenencia a una moto
     {
         return $this->belongsTo(Moto::class);
     }

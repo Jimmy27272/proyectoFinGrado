@@ -8,7 +8,7 @@
             enctype="multipart/form-data"
             class="card add-new-moto-form"
           >
-            @csrf
+            @csrf <!-- Directiva para proteger el formulario contra ataques CSRF -->
             <div class="form-content">
               <div class="form-details">
                 <div class="row">
@@ -16,7 +16,7 @@
                     <div class="form-group @error('fabricante_id') has-error @enderror">
                       <label>Fabricante</label>
 
-                      <x-select-fabricante :value="old('fabricante_id')"/>
+                      <x-select-fabricante :value="old('fabricante_id')"/> <!--componente fabricante con campo marcado al recargar la página-->
                       <p class="error-message">
                         {{ $errors->first('fabricante_id') }}
                       </p>
@@ -145,7 +145,7 @@
                 </div>
               </div>
               <div class="form-images">
-                @foreach ($errors->get('images.*') as $imageErrors)
+                @foreach ($errors->get('images.*') as $imageErrors) 
                   @foreach ($imageErrors as $err)
                     <div class="text-error mb-small">
                       {{ $err }}

@@ -5,23 +5,13 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Fabricante;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fabricante>
- */
 class FabricanteFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-
     
-
     public function definition(): array
     {
         return [
-            'name' => fake()->word()
+            'name' => fake()->word()  // Genera un nombre aleatorio para el fabricante
         ];
     }
 }

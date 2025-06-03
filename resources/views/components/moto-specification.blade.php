@@ -1,3 +1,8 @@
+    <!-- 
+Este componente muestra un icono verde si el valor es verdadero (check) o rojo si es falso (cruz), seguido del contenido proporcionado mediante el slot.
+Ideal para indicar si una característica está disponible o no.
+-->
+    
     @props(['value'])
     <li>
         @if ($value)
@@ -30,5 +35,5 @@
                     
 
 
-                    {{$slot}}
+                    {{$slot}}  
                   </li>

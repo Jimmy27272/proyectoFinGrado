@@ -12,19 +12,14 @@ class SelectModelo extends Component
 {
 
     public Collection $modelos;
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        $this->modelos=Modelo::orderBy('name')->get();
+        $this->modelos=Modelo::orderBy('name')->get(); // Obtiene todos los modelos ordenados por nombre desde el modelo Modelo
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-modelo');
+        return view('components.select-modelo'); // Retorna la vista del componente select-modelo.blade.php al utilizar <x-select-modelo>
     }
 }

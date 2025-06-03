@@ -17,11 +17,11 @@ class Ciudad extends Model
 
     protected $fillable = ['name', 'comunidad_id'];
 
-    public function comunidad(): BelongsTo{
+    public function comunidad(): BelongsTo{  // Relación de pertenencia a una comunidad
         return $this->belongsTo(Comunidad::class);
     }
 
-    public function motos(): HasMany
+    public function motos(): HasMany // Relación uno a muchos con la tabla motos
     {
         return $this->hasMany(Moto::class);
     }

@@ -4,7 +4,7 @@
         <img src="/img/logoApp.svg" alt="Logo" /> <!--logo de la página-->
       </a>
       <div class="navbar-auth">
-        @auth()
+        @auth() <!-- Si el usuario está autenticado, se mostrarán los siguientes enlaces -->
         <a href="{{route('moto.create')}}" class="btn btn-add-new-moto">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@
         
         <div class="navbar-menu" tabindex="-1">
           <a href="javascript:void(0)" class="navbar-menu-handler">
-            Bienvenido, {{\Illuminate\Support\Facades\Auth::user()->name}}
+            Bienvenido, {{\Illuminate\Support\Facades\Auth::user()->name}} <!-- Nombre del usuario autenticado -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -51,7 +51,7 @@
             </li>
             <li>
               <form action="{{route('logout')}}" method="post">
-                @csrf
+                @csrf <!-- Token CSRF para proteger el formulario de cierre de sesión -->
                 <button>Cerrar sesión</button>
               </form>
             </li>
@@ -59,7 +59,7 @@
         </div>
         @endauth
 
-        @guest()
+        @guest() <!-- Si el usuario no está autenticado, se mostrarán los siguientes enlaces -->
         <a href="{{route('signup')}}" class="btn btn-primary btn-signup">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -11,19 +11,14 @@ use App\Models\MotoTipo;
 class RadioListMotoTipo extends Component
 {
      public Collection $MotoTipos;
-    /**
-     * Create a new component instance.
-     */
+
     public function __construct()
     {
-        $this->MotoTipos = MotoTipo::orderBy('name')->get();
+        $this->MotoTipos = MotoTipo::orderBy('name')->get(); // Obtiene todos los tipos de moto ordenados por nombre desde el modelo MotoTipo
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.radio-list-moto-tipo');
+        return view('components.radio-list-moto-tipo'); // Retorna la vista del componente radio-list-moto-tipo.blade.php al utilizar <x-radio-list-moto-tipo>
     }
 }

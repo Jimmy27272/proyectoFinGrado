@@ -92,7 +92,7 @@
         <h2>Últimas motos publicadas</h2>
         <div class="moto-items-listing">
           @foreach($motos as $moto)
-            <x-moto-item :$moto :is-in-watchlist="$moto->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/>
+            <x-moto-item :$moto :is-in-watchlist="$moto->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/> <!-- Componente para mostrar últimas publicaciones y las marcadas como favoritas por el usuario autenticado -->
           @endforeach
         </div>
       </div>

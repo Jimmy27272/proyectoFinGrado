@@ -8,19 +8,13 @@ use Illuminate\Contracts\View\View;
 
 class BaseLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public function __construct()
     {
-        //
+        
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('layouts.base');
+        return view('layouts.base'); // Retorna la vista del layout base.blade.php al utilizar <x-base-layout>
     }
 }

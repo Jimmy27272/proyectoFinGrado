@@ -16,12 +16,12 @@ class Comunidad extends Model
 
     protected $fillable = ['name'];
 
-    public function motos(): HasMany
+    public function motos(): HasMany // Relación uno a muchos con la tabla motos
     {
         return $this->hasMany(Moto::class);
     }
 
-    public function ciudades(): HasMany
+    public function ciudades(): HasMany // Relación uno a muchos con la tabla ciudades
     {
         return $this->hasMany(Ciudad::class);
     }

@@ -23,15 +23,15 @@ class MotoImagen extends Model
     'position'
     ];
 
-    public function moto(): BelongsTo
+    public function moto(): BelongsTo // Relación uno a muchos con la tabla motos
     {
         return $this->belongsTo(Moto::class);
     }
 
     public function getUrl(){
-        if(str_starts_with($this->imagen_path, 'http')){
+        if(str_starts_with($this->imagen_path, 'http')){ // si la ruta de la imagen empieza por http se retorna tal cual
             return $this->imagen_path;
         }
-        return Storage::url($this->imagen_path);
+        return Storage::url($this->imagen_path); // si no, se usa el Storage local para obtener la URL de la imagen
     }
 }

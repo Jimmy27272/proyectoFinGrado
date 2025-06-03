@@ -13,24 +13,16 @@ use App\Models\User;
 use App\Models\Ciudad;
 use App\Models\Modelo;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Moto>
- */
 class MotoFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
 {
-    $fabricante = Fabricante::inRandomOrder()->first() ?? Fabricante::factory()->create();
+    $fabricante = Fabricante::inRandomOrder()->first() ?? Fabricante::factory()->create(); // Obtiene un fabricante aleatorio o crea uno nuevo si no existe
     $modelo = Modelo::where('fabricante_id', $fabricante->id)->inRandomOrder()->first()
-        ?? Modelo::factory()->create(['fabricante_id' => $fabricante->id]);
+        ?? Modelo::factory()->create(['fabricante_id' => $fabricante->id]); // Obtener un modelo aleatorio del fabricante o crear uno nuevo
 
-    $user = User::inRandomOrder()->first() ?? User::factory()->create();
-    $ciudad = Ciudad::inRandomOrder()->first() ?? Ciudad::factory()->create();
+    $user = User::inRandomOrder()->first() ?? User::factory()->create(); // Asegura que siempre haya un usuario
+    $ciudad = Ciudad::inRandomOrder()->first() ?? Ciudad::factory()->create(); // Obtener una ciudad aleatoria o crear una nueva
 
     return [
         'fabricante_id' => $fabricante->id,
@@ -39,8 +31,8 @@ class MotoFactory extends Factory
         'precio' => ((int) fake()->randomFloat(2, 5, 100)) * 1000,
         'vin' => strtoupper(Str::random(17)),
         'kilometros' => ((int) fake()->randomFloat(2, 5, 500)) * 1000,
-        'moto_tipo_id' => MotoTipo::inRandomOrder()->first()?->id ?? MotoTipo::factory()->create()->id,
-        'cilindrada_id' => Cilindrada::inRandomOrder()->first()?->id ?? Cilindrada::factory()->create()->id,
+        'moto_tipo_id' => MotoTipo::inRandomOrder()->first()?->id ?? MotoTipo::factory()->create()->id,  // Obtiene un tipo de moto aleatorio o crea uno nuevo si no existe
+        'cilindrada_id' => Cilindrada::inRandomOrder()->first()?->id ?? Cilindrada::factory()->create()->id, // Obtiene una cilindrada aleatoria o crea una nueva si no existe
         'user_id' => $user->id,
         'ciudad_id' => $ciudad->id,
         'direccion' => fake()->address,

@@ -4,7 +4,7 @@
   <form action="{{route('password.update')}}" method="post">
     @csrf
 
-    <input type="hidden" name="token" value="{{request('token') }}">
+    <input type="hidden" name="token" value="{{request('token') }}"> <!-- Token para la solicitud de restablecimiento de contraseña -->
 
     <div class="form-group @error('email') has-error @enderror">
         <input type="email" readonly name="email" value="{{request('email')}}"/>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <input type="hidden" name="email" value="{{request('email') }}">
+    <input type="hidden" name="email" value="{{request('email') }}"> <!-- Campo oculto para el email, ya que se envía en la solicitud de restablecimiento de contraseña -->
 
     <div class="form-group @error('password') has-error @enderror">
         <input type="password" placeholder="Nueva contraseña" name="password"

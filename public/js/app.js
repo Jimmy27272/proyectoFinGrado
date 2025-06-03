@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const models = childDropdown.querySelectorAll('option');
       models.forEach(model => {
         if (model.dataset.parent === parentValue || model.value === '') {
-          model.style.display = 'block';
+          model.style.display = 'block';  // Mostrar la opción si coincide con el valor del padre o es la opción por defecto
         } else {
-          model.style.display = 'none';
+          model.style.display = 'none'; // Ocultar la opción si no coincide
         }
       });
     }
@@ -101,21 +101,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
 
-    // Function to initialize the sorting dropdown
+   // Función para inicializar el comportamiento del dropdown de ordenamiento
     const initSortingDropdown = () => {
     const sortingDropdown = document.querySelector('.sort-dropdown');
     if (!sortingDropdown) return;
 
-    // Init sorting dropdown with the current value
+    // Obtiene la URL actual de la página
     const url = new URL(window.location.href);
+    // Extrae el valor actual del parámetro 'sort' de la URL (si existe)
     const sortValue = url.searchParams.get('sort');
+    // Si hay un valor definido para 'sort', selecciona esa opción en el dropdown
     if (sortValue) {
       sortingDropdown.value = sortValue;
     }
-
+ // Agrega un event listener al dropdown para detectar cambios en la selección
     sortingDropdown.addEventListener('change', (ev) => {
+      // Crea un nuevo objeto URL basado en la URL actual
       const url = new URL(window.location.href);
+      // Actualiza o agrega el parámetro 'sort' en la URL con el nuevo valor seleccionado
       url.searchParams.set('sort', ev.target.value);
+      // Redirige al navegador a la nueva URL (recarga la página con el nuevo orden aplicado)
       window.location.href = url.toString();
     });
   }

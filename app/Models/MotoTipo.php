@@ -15,7 +15,7 @@ class MotoTipo extends Model
 
     protected $fillable = ['name'];
 
-   public function motos(): HasMany{
+   public function motos(): HasMany{ // Relación uno a muchos con la tabla motos
         return $this->hasMany(Moto::class);
     }
    }

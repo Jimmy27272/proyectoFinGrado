@@ -47,7 +47,7 @@
                     <div class="find-a-moto-inputs">
                       <div class="form-group">
                         <label class="mb-medium">Fabricante</label>
-                        <x-select-fabricante :value="request('fabricante_id')" />
+                        <x-select-fabricante :value="request('fabricante_id')" /> <!-- componente fabricante con campo marcado al recargar la página -->
                       </div>
                       <div class="form-group">
                         <label class="mb-medium">Modelo</label>
@@ -110,7 +110,7 @@
                 @if($motos->count())
                 <div class="moto-items-listing">
                   @foreach($motos as $moto)
-                    <x-moto-item :$moto :is-in-watchlist="$moto->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/>
+                    <x-moto-item :$moto :is-in-watchlist="$moto->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/> <!-- se muestran las motos marcadas como favoritas si el usuario está logueado -->
                   @endforeach
                 </div>
                 @else
@@ -118,7 +118,7 @@
                     No se encontraron resultados para tu búsqueda.
                   </div> 
                 @endif
-                {{$motos->onEachSide(1)->links('pagination')}}
+                {{$motos->onEachSide(1)->links('pagination')}}  <!-- Paginación personalizada -->
                 
               </div>
             </div>

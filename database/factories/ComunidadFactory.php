@@ -10,11 +10,6 @@ use App\Models\Comunidad;
  */
 class ComunidadFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
 
@@ -42,7 +37,7 @@ class ComunidadFactory extends Factory
 
 
         return [
-            'name' => $this->faker->randomElement($comunidades),
+            'name' => $this->faker->randomElement($comunidades), // Genera un nombre aleatorio de comunidad
         ];
     }
 }

@@ -12,7 +12,7 @@
             @endif
           <div class="moto-items-listing">
             @foreach($motos as $moto)
-                 <x-moto-item :$moto :isInWatchlist="true"/>
+                 <x-moto-item :$moto :isInWatchlist="true"/> <!-- isInWatchlist es true porque estamos en la página de favoritos -->
             @endforeach
           </div>
 

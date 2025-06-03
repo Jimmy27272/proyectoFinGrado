@@ -15,12 +15,12 @@ class Modelo extends Model
 
     protected $fillable = ['name', 'fabricante_id'];
 
-    public function fabricante(): BelongsTo
+    public function fabricante(): BelongsTo // Relación de pertenencia a un fabricante
     {
         return $this->belongsTo(Fabricante::class);
     }
 
-    public function motos(): HasMany
+    public function motos(): HasMany // Relación uno a muchos con la tabla motos
     {
         return $this->hasMany(Moto::class);
     }

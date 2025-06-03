@@ -1,3 +1,12 @@
+{{-- 
+  Componente que muestra la información de una moto individual:
+  - Imagen (o imagen por defecto si no hay)
+  - Ciudad
+  - Botón para añadir/quitar de la lista de favoritos (watchlist)
+  - Título, precio, tipo de moto y cilindrada
+--}}
+
+
 @props(['moto', 'isInWatchlist' => false])
 
 <div class="card">

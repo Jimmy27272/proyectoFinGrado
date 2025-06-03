@@ -8,27 +8,15 @@ use Illuminate\Contracts\View\View;
 
 class SearchForm extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public function __construct(  
     )
     { 
 
     }
 
-    
-    
-
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.search-form');
+        return view('components.search-form'); // Retorna la vista del componente search-form.blade.php al utilizar <x-search-form>
     }
 
-    public function test(){
-        return 'Something';
-    }
 }

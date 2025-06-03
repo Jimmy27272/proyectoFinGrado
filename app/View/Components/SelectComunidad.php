@@ -11,19 +11,14 @@ use App\Models\Comunidad;
 class SelectComunidad extends Component
 {
     public Collection $comunidades;
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        $this->comunidades = Comunidad::orderBy('name')->get();
+        $this->comunidades = Comunidad::orderBy('name')->get(); // Obtiene todas las comunidades ordenadas por nombre
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-comunidad');
+        return view('components.select-comunidad'); // Retorna la vista del componente select-comunidad.blade.php al utilizar <x-select-comunidad>
     }
 }

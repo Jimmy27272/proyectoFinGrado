@@ -12,19 +12,14 @@ class SelectFabricante extends Component
 {
 
     public Collection $fabricantes;
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        $this->fabricantes = Fabricante::orderBy('name')->get();
+        $this->fabricantes = Fabricante::orderBy('name')->get(); // Obtiene todos los fabricantes ordenados por nombre desde el modelo Fabricante
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-fabricante');
+        return view('components.select-fabricante'); // Retorna la vista del componente select-fabricante.blade.php al utilizar <x-select-fabricante>
     }
 }

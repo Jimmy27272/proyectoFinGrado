@@ -11,19 +11,14 @@ use App\Models\Ciudad;
 class SelectCiudad extends Component
 {
     public Collection $ciudades;
-    /**
-     * Create a new component instance.
-     */
+
     public function __construct()
     {
-        $this->ciudades = Ciudad::orderBy('name')->get();
+        $this->ciudades = Ciudad::orderBy('name')->get(); // Obtiene todas las ciudades ordenadas por nombre
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-ciudad');
+        return view('components.select-ciudad'); // Retorna la vista del componente select-ciudad.blade.php al utilizar <x-select-ciudad>
     }
 }

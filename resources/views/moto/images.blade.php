@@ -10,7 +10,7 @@
                     action="{{route('moto.updateImages', $moto)}}"
                     method="POST" class="card p-medium form-update-images" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('PUT')  <!-- Método PUT para actualizar -->
                     
                     
 

@@ -17,7 +17,6 @@ class SignupController extends Controller
     public function store(SignupRequest $request){
 
 
-        // Create user out of validated request data. Hash password
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

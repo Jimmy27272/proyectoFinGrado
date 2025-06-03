@@ -17,14 +17,14 @@ class Fabricante extends Model
 
     protected $fillable = ['name'];
 
-    public function motos(): HasMany
+    public function motos(): HasMany // Relación uno a muchos con la tabla motos
     {
         return $this->hasMany(Moto::class);
     }
 
     public function modelos(): HasMany
     {
-        return $this->hasMany(\App\Models\Modelo::class);
+        return $this->hasMany(\App\Models\Modelo::class); // Relación uno a muchos con la tabla modelos
     }
 
     

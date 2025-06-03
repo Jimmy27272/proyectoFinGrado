@@ -11,7 +11,7 @@
             class="card add-new-moto-form"
           >
           @csrf
-          @method('PUT')
+          @method('PUT')  <!-- Método PUT para actualizar -->
             <div class="form-content">
               <div class="form-details">
                 <div class="row">

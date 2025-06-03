@@ -12,9 +12,6 @@ use Illuminate\Support\Str;
 
 class MotoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         
@@ -27,35 +24,22 @@ class MotoController extends Controller
         return view('moto.index', ['motos' => $motos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        return view('moto.create');
+        return view('moto.create'); // Vista para crear una nueva moto
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreMotoRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validated(); // Obtiene los datos validados del formulario
             
-       
-            
+        $featuresData = $data['features'] ?? []; // Datos de características de la moto, si no existen, se inicializan como un array vacío
 
-        $featuresData = $data['features'] ?? [];
+        $images = $request->file('images') ?: []; // Si no se subieron imágenes, se inicializa como un array vacío
 
-        $images = $request->file('images') ?: [];
-
-
-
-       
-
-        
-
-        $data['user_id'] = $request->user()->id;
+        $data['user_id'] = $request->user()->id; //
 
        $moto = Moto::create($data);
 
@@ -70,14 +54,13 @@ class MotoController extends Controller
         }
         
 
-        if ($request->has('published_at')) {
-            $moto->published_at = now();
-            $moto->save();
+        if ($request->has('published_at')) { // Si se ha marcado como publicada
+            $moto->published_at = now(); // Establece la fecha de publicación a ahora
+            $moto->save(); 
         }
 
-        // Redirect to the index page or wherever you want
 
-       return redirect()->route('moto.index');
+       return redirect()->route('moto.index'); // Redirige a la lista de motos
     }
 
     public function show(Request $request, Moto $moto)
@@ -88,9 +71,7 @@ class MotoController extends Controller
         return view('moto.show', ['moto' => $moto]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Moto $moto)
     {
         if($moto->user_id !== auth()->id()){
@@ -100,9 +81,7 @@ class MotoController extends Controller
         return view('moto.edit', ['moto' => $moto]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(StoreMotoRequest $request, Moto $moto)
     {
          if($moto->user_id !== auth()->id()){
@@ -131,15 +110,13 @@ class MotoController extends Controller
 
         $moto->features()->update($features);
 
-        //$request->session()->flash('success', '¡Moto actualizada!'); // Flash message to session
+        
 
         return redirect()->route('moto.index')
-            ->with('success', '¡Moto actualizada!'); // Redirect with success message
+            ->with('success', '¡Moto actualizada!'); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Moto $moto)
     {
          if($moto->user_id !== auth()->id()){
@@ -149,13 +126,13 @@ class MotoController extends Controller
         $moto->delete();
 
         return redirect()->route('moto.index')
-            ->with('success', '¡Moto eliminada!'); // Redirect with success message
+            ->with('success', '¡Moto eliminada!'); 
     }
 
     public function search(Request $request){
 
        
-
+        // obtiene los parámetros de búsqueda del request
         $fabricante = $request->integer('fabricante_id');
         $modelo = $request->integer('modelo_id');
         $MotoTipo = $request->integer('moto_tipo_id');
@@ -169,11 +146,11 @@ class MotoController extends Controller
         $kilometro = $request->integer('kilometros');
         $sort = $request->input('sort', '-published_at');
 
-
+        // Construye la consulta para buscar motos
         $query = Moto::select('motos.*')->where('published_at', '<', now())
             ->with(['primaryImage', 'ciudad', 'MotoTipo', 'cilindrada', 'fabricante', 'modelo', 'favouredUsers']);
             
-
+        // Aplica los filtros de búsqueda
         if ($fabricante){
             $query->where('fabricante_id', $fabricante);
         }
@@ -183,7 +160,7 @@ class MotoController extends Controller
         }
 
         if($comunidad){
-            $query->join('ciudades', 'ciudades.id', '=', 'motos.ciudad_id')->where('comunidad_id', $comunidad);
+            $query->join('ciudades', 'ciudades.id', '=', 'motos.ciudad_id')->where('comunidad_id', $comunidad); 
         }
 
         if($ciudad){
@@ -211,18 +188,17 @@ class MotoController extends Controller
         if($kilometro){
             $query->where('kilometros', '<=', $kilometro);
         }
-
-        if (str_starts_with($sort, '-')) {
-    $sortBy = substr($sort, 1);
-    $query->orderBy($sortBy, 'desc');
+        //
+        if (str_starts_with($sort, '-')) { // Si el sort empieza con un guion, significa que es descendente
+    $sortBy = substr($sort, 1); // Elimina el guion para obtener el nombre del campo
+    $query->orderBy($sortBy, 'desc'); // Ordena por el campo especificado en orden descendente
 } else {
-    $query->orderBy($sort);
+    $query->orderBy($sort); // Si no empieza con un guion, ordena por el campo especificado en orden ascendente
 }
         
 
-        
-            $motos = $query->paginate(15)
-            ->withQueryString();
+            $motos = $query->paginate(15) // Paginación de resultados, 15 motos por página
+            ->withQueryString(); // mantiene los parámetros de búsqueda en la paginación
 
         return view('moto.search', ['motos' => $motos]);
     }

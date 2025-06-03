@@ -11,19 +11,14 @@ use App\Models\Cilindrada;
 class SelectCilindrada extends Component
 {
     public Collection $cilindradas;
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        $this->cilindradas= Cilindrada::orderBy('name')->get();
+        $this->cilindradas= Cilindrada::orderBy('name')->get(); // Obtiene todas las cilindradas ordenadas por nombre desde el modelo Cilindrada
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-cilindrada');
+        return view('components.select-cilindrada'); // Retorna la vista del componente select-cilindrada.blade.php al utilizar <x-select-cilindrada>
     }
 }

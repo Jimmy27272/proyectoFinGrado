@@ -11,19 +11,14 @@ use App\Models\MotoTipo;
 class SelectMotoTipo extends Component
 {
     public Collection $MotoTipos;
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        $this->MotoTipos = MotoTipo::orderBy('name')->get();
+        $this->MotoTipos = MotoTipo::orderBy('name')->get(); // Obtiene todos los tipos de moto ordenados por nombre desde el modelo MotoTipo
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.select-moto-tipo');
+        return view('components.select-moto-tipo'); // Retorna la vista del componente select-moto-tipo.blade.php al utilizar <x-select-moto-tipo>
     }
 }
