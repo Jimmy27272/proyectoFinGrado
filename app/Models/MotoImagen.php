@@ -32,6 +32,6 @@ class MotoImagen extends Model
         if(str_starts_with($this->imagen_path, 'http')){ // si la ruta de la imagen empieza por http se retorna tal cual
             return $this->imagen_path;
         }
-        return Storage::url($this->imagen_path); // si no, se usa el Storage local para obtener la URL de la imagen
+         return asset('storage/' . $this->imagen_path);// si no, se usa el Storage local para obtener la URL de la imagen
     }
 }
