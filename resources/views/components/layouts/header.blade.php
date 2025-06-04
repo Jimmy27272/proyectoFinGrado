@@ -23,7 +23,7 @@
 
           Añadir nueva moto
         </a>
-        @if(auth()->user()?->isAdmin())
+        @if(auth()->user()?->isAdmin()) <!-- Si el usuario autenticado es un administrador, se mostrará el enlace al panel de administración-->
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline ml-4">
                 Panel Admin
             </a>

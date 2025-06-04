@@ -33,6 +33,7 @@
             <thead>
                 <tr>
                     <th class="table-header">Título</th>
+                    <th class="table-header">Usuario</th>
                     <th class="table-header">Fecha</th>
                     <th class="table-header">Acciones</th>
                 </tr>
@@ -41,6 +42,7 @@
                 @forelse ($motos as $moto)
                     <tr class="moto-row">
                         <td class="table-cell">{{ $moto->getTitle() }}</td>
+                        <td class="table-cell">{{ $moto->owner->name }}</td>
                         <td class="table-cell">{{ $moto->created_at->format('d/m/Y') }}</td>
                         <td class="table-cell actions-cell">
                             <form method="POST" action="{{ route('admin.destroy', $moto) }}" class="delete-form" onsubmit="return confirm('¿Seguro que quieres eliminar esta moto?')">
@@ -57,5 +59,8 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="pagination-container">
+        {{$motos->onEachSide(1)->appends(request()->query())->links('pagination')}}
+        </div>
     </div>
 </x-app-layout>
