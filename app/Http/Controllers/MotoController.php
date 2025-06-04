@@ -46,7 +46,7 @@ class MotoController extends Controller
        $moto->features()->create($featuresData);
 
        foreach ($images as $i => $image) {
-            $path = $image->store('images');
+            $path = $image->store('images', 'public');
             $moto->images()->create([
                 'imagen_path' => $path,
                 'position' => $i + 1,
@@ -261,7 +261,7 @@ public function addImages(Request $request, Moto $moto)
     $position = $moto->images()->max('position') ?? 0;
     foreach ($images as $image) {
         // Save it on the file system
-        $path = $image->store('images');
+        $path = $image->store('images', 'public');
         // Save it in the database
         $moto->images()->create([
             'imagen_path' => $path,
