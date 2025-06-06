@@ -138,14 +138,7 @@
                     {{ $errors->first('descripcion') }}
                   </p>
                 </div>
-                <div class="form-group @error('published_at') has-error @enderror">
-                   <label>Fecha de publicación</label>
-                   <input type="date" name="published_at" 
-                   value="{{old('published_at', (new \Carbon\Carbon($moto->published_at))->format('Y-m-d'))}}"/>
-                    <p class="error-message">
-                      {{ $errors->first('published_at') }}
-                    </p>
-                </div>
+                
               </div>
               <div class="form-images">
                 <p>

@@ -54,10 +54,8 @@ class MotoController extends Controller
         }
         
 
-        if ($request->has('published_at')) { // Si se ha marcado como publicada
-            $moto->published_at = now(); // Establece la fecha de publicación a ahora
-            $moto->save(); 
-        }
+        $moto->published_at = now();
+        $moto->save();
 
 
        return redirect()->route('moto.index'); // Redirige a la lista de motos
@@ -65,9 +63,6 @@ class MotoController extends Controller
 
     public function show(Request $request, Moto $moto)
     {
-        if(!$moto->published_at){
-            abort(404);
-        }
         return view('moto.show', ['moto' => $moto]);
     }
 
@@ -146,11 +141,11 @@ class MotoController extends Controller
         $kilometro = $request->integer('kilometros');
         $sort = $request->input('sort', '-published_at');
 
-        // Construye la consulta para buscar motos
+        // Consulta para buscar motos
         $query = Moto::select('motos.*')->where('published_at', '<', now())
             ->with(['primaryImage', 'ciudad', 'MotoTipo', 'cilindrada', 'fabricante', 'modelo', 'favouredUsers']);
             
-        // Aplica los filtros de búsqueda
+        // Aplicar los filtros de búsqueda
         if ($fabricante){
             $query->where('fabricante_id', $fabricante);
         }
@@ -188,7 +183,7 @@ class MotoController extends Controller
         if($kilometro){
             $query->where('kilometros', '<=', $kilometro);
         }
-        //
+        // Ordenar los resultados según el parámetro 'sort'
         if (str_starts_with($sort, '-')) { // Si el sort empieza con un guion, significa que es descendente
     $sortBy = substr($sort, 1); // Elimina el guion para obtener el nombre del campo
     $query->orderBy($sortBy, 'desc'); // Ordena por el campo especificado en orden descendente
@@ -211,13 +206,13 @@ class MotoController extends Controller
     public function updateImages(Request $request, Moto $moto){
 
 
-        // Check if the user is authorized to update images for this moto
+        // si el usuario autenticado no es el dueño de la moto, aborta con error 403
         if ($moto->user_id !== auth()->id()) {
             abort(403);
         }
 
 
-        // Get Validated data of delete images and positions
+        // validar request data
         $data = $request->validate([
             'delete_images' => 'array',
         'delete_images.*' => 'integer',
@@ -228,41 +223,41 @@ class MotoController extends Controller
         $deleteImages = $data['delete_images'] ?? [];
         $positions = $data['positions'] ?? [];
 
-        // Select images to delete
+        // Seleccionar las imágenes a eliminar de la moto
     $imagesToDelete = $moto->images()->whereIn('id', $deleteImages)->get();
 
-    // Iterate over images to delete and delete them from file system
+    // borrar las imágenes del sistema de archivos
     foreach ($imagesToDelete as $image) {
         if (Storage::exists($image->imagen_path)) {
             Storage::delete($image->imagen_path);
         }
     }
 
-    // Delete images from the database
+    // borrar las imágenes de la base de datos
     $moto->images()->whereIn('id', $deleteImages)->delete();
 
-    // Iterate over positions and update position for each image, by its ID
+    // Actualizar las posiciones de las imágenes restantes
     foreach ($positions as $id => $position) {
         $moto->images()->where('id', $id)->update(['position' => $position]);
     }
 
-    // Redirect back to moto.images route
+    // redireccionar a la vista de imágenes de la moto con un mensaje de éxito
     return redirect()->back()
-        ->with('success', '¡Imágenes actualizadas!'); // Redirect with success message
+        ->with('success', '¡Imágenes actualizadas!'); 
     }
 
 
 public function addImages(Request $request, Moto $moto)
 {
-    // Get images from request
+    // 
     $images = $request->file('images') ?? [];
 
-    // Select max position of car images
+    // Seleccionar las imágenes a añadir a la moto
     $position = $moto->images()->max('position') ?? 0;
     foreach ($images as $image) {
-        // Save it on the file system
+        // guardar la imagen en el sistema de archivos
         $path = $image->store('images', 'public');
-        // Save it in the database
+        // crear una nueva imagen en la base de datos asociada a la moto
         $moto->images()->create([
             'imagen_path' => $path,
             'position' => $position + 1
@@ -271,6 +266,6 @@ public function addImages(Request $request, Moto $moto)
     }
 
     return redirect()->back()
-        ->with('success', '¡Imágenes añadidas!'); // Redirect with success message
+        ->with('success', '¡Imágenes añadidas!'); // Redirige a la vista de imágenes de la moto con un mensaje de éxito
 }
 }

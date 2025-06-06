@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
    
 
-    const imageCarousel = () => {
+    const imageCarousel = () => { // Función para el carrusel de imágenes
       const carousel = document.querySelector('.moto-images-carousel');
       if (!carousel) {
         return;
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       let currentIndex = 0;
   
-      // Initialize active thumbnail class
+      // la primera imagen activa
       thumbnails.forEach((thumbnail, index) => {
         if (thumbnail.src === activeImage.src) {
           thumbnail.classList.add('active-thumbnail');
@@ -149,14 +149,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   
-      // Function to update the active image and thumbnail
+      // Función para actualizar la imagen activa y los thumbnails
       const updateActiveImage = (index) => {
         activeImage.src = thumbnails[index].src;
         thumbnails.forEach(thumbnail => thumbnail.classList.remove('active-thumbnail'));
         thumbnails[index].classList.add('active-thumbnail');
       };
   
-      // Add click event listeners to thumbnails
+      // añade click event listener a cada thumbnail
       thumbnails.forEach((thumbnail, index) => {
         thumbnail.addEventListener('click', () => {
           currentIndex = index;
@@ -164,13 +164,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
   
-      // Add click event listener to the previous button
+      // añade click event listener al botón anterior
       prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
         updateActiveImage(currentIndex);
       });
   
-      // Add click event listener to the next button
+      // añade click event listener al botón siguiente
       nextButton.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % thumbnails.length;
         updateActiveImage(currentIndex);
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
 
-    // Function to initialize the image picker
+    // Funcion para inicializar el selector de imágenes
     const initImagePicker = () => {
     const fileInput = document.querySelector("#motoFormImageUpload");
     const imagePreview = document.querySelector("#imagePreviews");
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     };
-
+// Función para leer el archivo y devolver una promesa con la URL de la imagen
     function readFile(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.readAsDataURL(file);
       });
     }
-
+// Función para crear un elemento de imagen con la URL proporcionada
     function createImage(url) {
       const a = document.createElement("a");
       a.classList.add("moto-form-image-preview");
@@ -221,10 +221,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    
-
-
-  
   initSlider();
   initCascadingDropdown('#fabricanteSelect', '#modeloSelect');
   initCascadingDropdown('#comunidadSelect', '#ciudadSelect');

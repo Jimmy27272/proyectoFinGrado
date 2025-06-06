@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash; 
-use App\Http\Requests\SignupRequest; // Importa la solicitud de registro
+use App\Http\Requests\SignupRequest; 
 
 class SignupController extends Controller
 {

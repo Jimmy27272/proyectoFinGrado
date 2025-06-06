@@ -91,7 +91,7 @@
                   <div class="col">
                     <div class="form-group ">
                       <label>Comunidad</label>
-                      <x-select-comunidad />
+                      <x-select-comunidad :value="old('comunidad_id')"/>
                       
                     </div>
                   </div>
@@ -135,14 +135,7 @@
                     {{ $errors->first('descripcion') }}
                   </p>
                 </div>
-                <div class="form-group @error('published_at') has-error @enderror">
-                   <label>Fecha de publicación</label>
-                   <input type="date" name="published_at" 
-                   value="{{old('published_at')}}"/>
-                    <p class="error-message">
-                      {{ $errors->first('published_at') }}
-                    </p>
-                </div>
+                
               </div>
               <div class="form-images">
                 @foreach ($errors->get('images.*') as $imageErrors) 

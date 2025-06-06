@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        MotoTipo::factory()
+        MotoTipo::factory() // Crear tipos de moto
             ->sequence(
                 ['name' => 'Scooter'],
                 ['name' => 'Sport'],
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             ->count(6)
             ->create();
 
-        Cilindrada::factory()
+        Cilindrada::factory() // Crear cilindradas
             ->sequence(
                 ['name' => 'Hasta 125cc'],
                 ['name' => '126cc - 500cc'],
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         ];
 
 
-        foreach ($comunidades as $comunidad => $ciudades){
+        foreach ($comunidades as $comunidad => $ciudades){ // Crear comunidades y sus ciudades
             Comunidad::factory()
                 ->state(['name' => $comunidad])
                 ->has(
@@ -221,7 +221,7 @@ class DatabaseSeeder extends Seeder
     ],  
 ];
 
-        foreach ($fabricantes as $fabricante => $modelos) {
+        foreach ($fabricantes as $fabricante => $modelos) { // Crear fabricantes y sus modelos
             Fabricante::factory()
                 ->state(['name' => $fabricante])
                 ->has(
@@ -232,25 +232,25 @@ class DatabaseSeeder extends Seeder
                 ->create();
         };
 
-        User::factory()
+        User::factory() // Crear usuarios
             ->count(3)
             ->create();
 
-        User::factory()
+        User::factory() // Crear usuarios
             ->count(2)
             ->has(
-                Moto::factory()
+                Moto::factory() // Crear motos para los usuarios
                 ->count(50)
                 ->has(
-                    MotoImagen::factory()
+                    MotoImagen::factory() // Crear imágenes para las motos
                     ->count(5)
                     ->sequence(fn(Sequence $sequence) =>
                     ['position' => ($sequence->index) % 5 + 1]),
                     'images'
                     )
-                    ->hasFeatures(),
+                    ->hasFeatures(), // Crear características para las motos
                 
-                'favouriteMotos'
+                'favouriteMotos' //
             )
             ->create();
         

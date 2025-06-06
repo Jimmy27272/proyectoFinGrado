@@ -13,10 +13,10 @@ class AdminOnly
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): Response 
     {
         
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
+        if (!auth()->check() || !auth()->user()->isAdmin()) { // Verifica si el usuario está autenticado y es administrador
             abort(403, 'Acceso denegado');
         }
         return $next($request);

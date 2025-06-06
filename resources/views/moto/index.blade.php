@@ -11,7 +11,6 @@
                       <th>Imagen</th>
                       <th>Título</th>
                       <th>Fecha</th>
-                      <th>Publicada</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -27,7 +26,6 @@
                       </td>
                       <td>{{$moto->getTitle()}}</td>
                       <td>{{$moto->getCreatedDate()}}</td>
-                      <td>{{$moto->published_at ? 'Sí' : 'No'}}</td>
                       <td class="">
                         <a
                           href="{{route('moto.edit', $moto)}}"

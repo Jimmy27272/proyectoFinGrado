@@ -38,7 +38,7 @@ class MotoFactory extends Factory
         'direccion' => fake()->address,
         'phone' => $user->phone ?? fake()->phoneNumber,
         'descripcion' => fake()->text(2000),
-        'published_at' => fake()->optional(0.9)->dateTimeBetween('-1 month', '+1 day'),
+        'published_at' => fake()->dateTimeBetween('-1 month', '+1 day'),
     ];
 }
 

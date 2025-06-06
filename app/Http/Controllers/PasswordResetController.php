@@ -14,21 +14,21 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class PasswordResetController extends Controller
 {
-    public function showForgotPassword()
+    public function showForgotPassword() // Método para mostrar la vista de "Olvidé mi contraseña"
     {
         return view('auth.forgot-password');
     }
 
-    public function forgotPassword(Request $request){
-        $request->validate([
+    public function forgotPassword(Request $request){ // Método para manejar la solicitud de restablecimiento de contraseña
+        $request->validate([ // Validación de los datos del formulario
             'email' => ['required','email']
         ]);
 
-       $status = Password::sendResetLink(
+       $status = Password::sendResetLink( // Envío del enlace de restablecimiento de contraseña
             $request->only('email')
         );
 
-        if ($status === Password::RESET_LINK_SENT) {
+        if ($status === Password::RESET_LINK_SENT) { // Si el enlace se envió correctamente, redirige con un mensaje de éxito
             return back()->with('success', 'Se ha enviado un enlace de restablecimiento de contraseña a su correo electrónico.');
 
          }
@@ -38,37 +38,37 @@ class PasswordResetController extends Controller
         
     }
 
-    public function showResetPassword(){
+    public function showResetPassword(){ // Método para mostrar la vista de restablecimiento de contraseña
 
         return view('auth.reset-password');
 
     }
 
-    public function resetPassword(Request $request){
+    public function resetPassword(Request $request){ // Método para manejar la solicitud de restablecimiento de contraseña
 
-        $request->validate([
+        $request->validate([ // Validación de los datos del formulario
             'password' => ['required', 'confirmed', 'min:8'],
             'email' => ['required', 'email'],
             'token' => ['required']
         ]);
 
-        $status = Password::reset(
+        $status = Password::reset( // Restablecimiento de la contraseña del usuario
             $request->only(['email','password', 'password_confirmation', 'token']),
-            function (User $user, string $password) {
+            function (User $user, string $password) { // Callback que se ejecuta al restablecer la contraseña
 
-                $user->forceFill([
+                $user->forceFill([ // Forzar el llenado de los campos del usuario
                     'password' => Hash::make($password),
                 ])->setRememberToken(Str::random(60));
 
 
                 $user->save();
 
-                event(new PasswordReset($user));
+                event(new PasswordReset($user)); // Disparar el evento de restablecimiento de contraseña
             }
                 );
                 
 
-                if ($status === Password::PASSWORD_RESET) {
+                if ($status === Password::PASSWORD_RESET) { // Si la contraseña se restableció correctamente, redirige con un mensaje de éxito
                     return redirect()->route('login')->with('success', 'Contraseña restablecida correctamente. Ahora puedes iniciar sesión.');
                 }
 

@@ -27,7 +27,7 @@ class AdminController extends Controller
                 });
         }
 
-        $motos = $motosQuery->with('owner')->latest()->paginate(10); // Obtener las últimas 15 motos
+        $motos = $motosQuery->with('owner')->latest()->paginate(10); // Obtener las últimas 10 motos
 
         return view('admin.dashboard', compact('usersCount', 'motosCount', 'motos', 'search')); // Pasar las motos y el conteo de usuarios y motos a la vista
     }
