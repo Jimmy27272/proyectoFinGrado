@@ -23,7 +23,6 @@ class HomeController extends Controller
             ->limit(15)
             ->get();
         
-
         return view('home.index', ['motos' =>$motos]); // retorna la vista de inicio con las motos publicadas
            
     }

@@ -26,6 +26,4 @@ class Fabricante extends Model
     {
         return $this->hasMany(\App\Models\Modelo::class); // Relación uno a muchos con la tabla modelos
     }
-
-    
 }

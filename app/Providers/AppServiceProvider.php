@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,5 +18,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination'); // Define la vista por defecto para la paginación
         View::share('year', date('Y')); // Comparte el año actual con todas las vistas
+
+        if (env('APP_ENV') === 'production') {
+        URL::forceScheme('https');
+    }
     }
 }

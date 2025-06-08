@@ -250,10 +250,10 @@ class MotoController extends Controller
 public function addImages(Request $request, Moto $moto)
 {
     // 
-    $images = $request->file('images') ?? [];
+    $images = $request->file('images') ?? []; 
 
     // Seleccionar las imágenes a añadir a la moto
-    $position = $moto->images()->max('position') ?? 0;
+    $position = $moto->images()->max('position') ?? 0; // Obtener la posición máxima de las imágenes existentes, o 0 si no hay imágenes
     foreach ($images as $image) {
         // guardar la imagen en el sistema de archivos
         $path = $image->store('images', 'public');

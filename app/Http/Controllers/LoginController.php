@@ -21,8 +21,8 @@ class LoginController extends Controller
             'password' => ['required','string','min:8']
         ]);
 
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
+        if(Auth::attempt($credentials)){ 
+            $request->session()->regenerate(); // Regenera la sesión para prevenir ataques de fijación de sesión
             return redirect()->intended(route('home'))->with('success', 'Has iniciado sesión correctamente.');
         }
 
